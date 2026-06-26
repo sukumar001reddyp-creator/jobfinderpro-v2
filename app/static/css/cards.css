@@ -1,0 +1,157 @@
+/* ===========================
+   Cards
+=========================== */
+
+.jf-card{
+
+    background:var(--surface);
+
+    border-radius:var(--radius-md);
+
+    box-shadow:var(--shadow-sm);
+
+    padding:24px;
+
+    transition:.35s;
+
+    border:1px solid var(--border);
+
+}
+
+.jf-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+.jf-section{
+
+    padding:90px 0;
+
+}
+
+.jf-title{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    color:var(--heading);
+
+}
+
+.jf-subtitle{
+
+    color:var(--text);
+
+    margin-top:12px;
+
+    font-size:18px;
+
+}
+/* ===========================
+   Company Cards
+=========================== */
+
+.company-card{
+
+    text-align:center;
+
+}
+
+.company-logo{
+
+    width:80px;
+
+    height:80px;
+
+    border-radius:50%;
+
+    margin:auto;
+
+    background:linear-gradient(135deg,#2563eb,#60a5fa);
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:34px;
+
+    font-weight:800;
+
+}
+/* ===========================
+   Job Cards
+=========================== */
+
+.job-card{
+
+    position:relative;
+
+}
+
+.job-card h4{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    margin-bottom:18px;
+
+}
+
+.job-type{
+
+    background:#EFF6FF;
+
+    color:var(--primary);
+
+    padding:8px 14px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+.salary{
+
+    color:var(--success);
+
+    font-size:20px;
+
+    font-weight:700;
+
+}
+
+.save-job{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#F8FAFC;
+
+    transition:.3s;
+
+}
+
+.save-job:hover{
+
+    background:#2563EB;
+
+    color:#fff;
+
+}

@@ -1,0 +1,111 @@
+/* ===========================
+   Buttons
+=========================== */
+
+.jf-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:12px 26px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s ease;
+
+    text-decoration:none;
+
+}
+
+.jf-btn-primary{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.jf-btn-primary:hover{
+
+    background:var(--primary-hover);
+
+    transform:translateY(-2px);
+
+    color:#fff;
+
+}
+
+.jf-btn-outline{
+
+    background:#fff;
+
+    border:1px solid var(--border);
+
+    color:var(--heading);
+
+}
+
+.jf-btn-outline:hover{
+
+    border-color:var(--primary);
+
+    color:var(--primary);
+
+}
+
+.jf-btn-success{
+
+    background:var(--success);
+
+    color:#fff;
+
+}
+
+.jf-btn-success:hover{
+
+    opacity:.9;
+
+    color:#fff;
+
+}
+
+.jf-btn-danger{
+
+    background:var(--danger);
+
+    color:#fff;
+
+}
+
+.jf-btn-danger:hover{
+
+    opacity:.9;
+
+}
+
+.jf-btn-sm{
+
+    padding:8px 18px;
+
+    font-size:14px;
+
+}
+
+.jf-btn-lg{
+
+    padding:15px 34px;
+
+    font-size:18px;
+
+}

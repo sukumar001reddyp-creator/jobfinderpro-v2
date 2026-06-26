@@ -1,0 +1,92 @@
+<!-- ================= Featured Jobs ================= -->
+
+<section class="jf-section">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="jf-title">
+                Featured Jobs
+            </h2>
+
+            <p class="jf-subtitle">
+                Discover the latest opportunities from top employers.
+            </p>
+
+        </div>
+
+        {% set jobs = [
+        ('Senior Python Developer','Google','Hyderabad','₹18 - ₹25 LPA','Remote'),
+        ('Frontend Developer','Microsoft','Bengaluru','₹12 - ₹18 LPA','Hybrid'),
+        ('Data Analyst','Amazon','Chennai','₹10 - ₹15 LPA','On Site'),
+        ('UI/UX Designer','Infosys','Pune','₹8 - ₹12 LPA','Remote'),
+        ('DevOps Engineer','TCS','Hyderabad','₹15 - ₹22 LPA','Hybrid'),
+        ('Java Developer','Accenture','Noida','₹10 - ₹16 LPA','On Site')
+        ] %}
+
+        <div class="row g-4">
+
+            {% for title,company,location,salary,type in jobs %}
+
+            <div class="col-lg-4">
+
+                <div class="jf-card job-card">
+
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+
+                        <span class="job-type">
+                            {{ type }}
+                        </span>
+
+                        <button class="save-job">
+                            <i class="bi bi-heart"></i>
+                        </button>
+
+                    </div>
+
+                    <h4>{{ title }}</h4>
+
+                    <p class="text-muted mb-2">
+
+                        <i class="bi bi-building"></i>
+
+                        {{ company }}
+
+                    </p>
+
+                    <p class="text-muted mb-2">
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        {{ location }}
+
+                    </p>
+
+                    <p class="salary">
+
+                        {{ salary }}
+
+                    </p>
+
+                    <div class="mt-4">
+
+                        <a href="#" class="jf-btn jf-btn-primary w-100">
+
+                            View Details
+
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>

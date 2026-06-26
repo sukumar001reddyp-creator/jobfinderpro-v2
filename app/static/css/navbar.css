@@ -1,0 +1,125 @@
+/* ===========================
+   Navbar
+=========================== */
+
+.navbar{
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(16px);
+
+    padding:18px 0;
+
+    transition:.35s;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.navbar-brand{
+
+    font-size:30px;
+
+    font-weight:800;
+
+    color:var(--primary)!important;
+
+}
+
+.navbar-brand span{
+
+    color:var(--heading);
+
+}
+
+.navbar-nav{
+
+    gap:8px;
+
+}
+
+.nav-link{
+
+    color:var(--heading)!important;
+
+    font-weight:600;
+
+    padding:10px 18px!important;
+
+    border-radius:10px;
+
+    transition:.3s;
+
+}
+
+.nav-link:hover{
+
+    background:#EFF6FF;
+
+    color:var(--primary)!important;
+
+}
+
+.dropdown-menu{
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:12px;
+
+    box-shadow:var(--shadow-lg);
+
+}
+
+.dropdown-item{
+
+    border-radius:10px;
+
+    padding:12px 15px;
+
+    transition:.3s;
+
+}
+
+.dropdown-item:hover{
+
+    background:#EFF6FF;
+
+    color:var(--primary);
+
+}
+
+.navbar .input-group{
+
+    max-width:420px;
+
+}
+
+.navbar .form-control{
+
+    border:none;
+
+    background:#F8FAFC;
+
+    height:48px;
+
+    border-radius:50px;
+
+}
+
+.navbar .form-control:focus{
+
+    box-shadow:none;
+
+}
+
+.input-group-text{
+
+    border:none;
+
+    background:#F8FAFC;
+
+    border-radius:50px 0 0 50px;
+
+}
