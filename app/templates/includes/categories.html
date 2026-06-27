@@ -1,0 +1,54 @@
+<!-- ================= Popular Categories (Horizontal Scroll) ================= -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-5">
+            <div>
+                <h2 class="fw-bold text-dark mb-1">Popular Categories</h2>
+                <p class="text-muted mb-0">Swipe to explore jobs across domains</p>
+            </div>
+            <a href="#" class="text-primary fw-semibold text-decoration-none small">View All →</a>
+        </div>
+
+        <div class="d-flex gap-3 overflow-auto pb-4" style="scrollbar-width: thin; scroll-snap-type: x mandatory;">
+            {% set categories = [
+                ('💻', 'Software Development', '48,291'),
+                ('☁️', 'Cloud & DevOps', '21,456'),
+                ('📊', 'Data Science', '15,732'),
+                ('🎨', 'UI/UX Design', '12,845'),
+                ('🛠️', 'Engineering', '28,934'),
+                ('💼', 'Marketing & Sales', '19,672'),
+                ('📈', 'Finance', '11,845')
+            ] %}
+
+            {% for icon, title, count in categories %}
+            <div class="flex-shrink-0 text-center" style="width: 165px;">
+                <div class="category-card p-4 rounded-4 shadow-sm bg-white hover-lift h-100">
+                    <div class="mx-auto mb-3 d-flex align-items-center justify-content-center" 
+                         style="font-size: 2.6rem; width: 68px; height: 68px;">
+                        {{ icon }}
+                    </div>
+                    <h6 class="fw-bold text-dark mb-1 text-truncate">{{ title }}</h6>
+                    <p class="text-muted small mb-0">{{ count }} Openings</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .hover-lift {
+        transition: all 0.3s ease;
+    }
+    .hover-lift:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.12) !important;
+    }
+    .overflow-auto::-webkit-scrollbar {
+        height: 6px;
+    }
+    .overflow-auto::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+    }
+</style>

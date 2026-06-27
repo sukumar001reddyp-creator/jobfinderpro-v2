@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobFinder Pro - Jobs</title>
+    
+    <!-- 1. Bootstrap 5 & Icons (ఇవి ఇక్కడే ఉండాలి, లేకపోతే లుక్ రాదు) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    
+    <style>
+        .card-hover-premium { transition: all 0.25s ease; }
+        .card-hover-premium:hover { transform: translateY(-3px); border-color: #b6d4fe !important; box-shadow: 0 12px 24px rgba(0,0,0,0.06) !important; }
+        .slider-custom::-webkit-slider-thumb { width: 18px; height: 18px; border-radius: 50%; background: #0d6efd; border: 2px solid #fff; cursor: pointer; -webkit-appearance: none; margin-top: -6px; }
+        .slider-custom::-moz-range-thumb { width: 18px; height: 18px; border-radius: 50%; background: #0d6efd; border: 2px solid #fff; cursor: pointer; }
+    </style>
+</head>
+<body style="background-color: #f8fafc;">
+
+    <!-- 2. నీ సపరేట్ నావ్‌బార్ ఇక్కడ పర్ఫెక్ట్‌గా లోడ్ అవుతుంది -->
+    {% include 'layouts/navbar.html' %}
+    
+
+    <!-- 3. మెయిన్ జాబ్ బోర్డ్ కంటెంట్ (ఏదీ మిస్ అవ్వకుండా) -->
+    <div class="py-4">
+        <div class="container-fluid px-4">
+            
+            <!-- TOP: SEARCH PANEL -->
+            <div class="bg-white border rounded-4 p-3 mb-4 shadow-sm border-light-subtle">
+                <div class="row g-3 align-items-center">
+                    <div class="col-md-4 position-relative">
+                        <i class="bi bi-search text-muted position-absolute top-50 start-0 translate-middle-y ms-3 fs-5"></i>
+                        <input type="text" class="form-control border-0 ps-5 bg-transparent shadow-none text-dark fw-medium" placeholder="Job title, keywords or company...">
+                    </div>
+                    <div class="col-md-3 position-relative border-start border-light-subtle">
+                        <i class="bi bi-geo-alt text-muted position-absolute top-50 start-0 translate-middle-y ms-3 fs-5"></i>
+                        <input type="text" class="form-control border-0 ps-5 bg-transparent shadow-none text-dark fw-medium" placeholder="Location or Remote">
+                    </div>
+                    <div class="col-md-3 border-start border-light-subtle">
+                        <select class="form-select border-0 text-muted bg-transparent shadow-none fw-medium">
+                            <option selected>Experience Level</option>
+                            <option>Fresher (0 Years)</option>
+                            <option>1 - 3 Years</option>
+                            <option>3 - 5 Years</option>
+                            <option>5+ Years</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn btn-primary w-100 fw-semibold py-2.5 rounded-3 shadow-sm" type="button">Search Jobs</button>
+                    </div>
+                </div>
+                
+                <div class="d-flex align-items-center gap-2 flex-wrap mt-3 pt-2 border-top border-light-subtle">
+                    <small class="text-secondary fw-bold me-2" style="font-size: 0.8rem;">Popular Searches:</small>
+                    <span class="badge bg-light text-secondary border border-light-subtle px-3 py-2 rounded-pill fw-medium">Python</span>
+                    <span class="badge bg-light text-secondary border border-light-subtle px-3 py-2 rounded-pill fw-medium">React</span>
+                    <span class="badge bg-light text-secondary border border-light-subtle px-3 py-2 rounded-pill fw-medium">UI/UX Design</span>
+                    <span class="badge bg-light text-secondary border border-light-subtle px-3 py-2 rounded-pill fw-medium">Data Scientist</span>
+                </div>
+            </div>
+
+            <!-- THREE COLUMN LAYOUT -->
+            <div class="row g-4">
+                
+                <!-- LEFT COLUMN: FILTERS -->
+                <div class="col-lg-3">
+                    <div class="bg-white border rounded-4 p-4 shadow-sm border-light-subtle sticky-lg-top" style="top: 90px; z-index: 5;">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h6 class="fw-bold mb-0 text-dark fs-5">Filter Jobs</h6>
+                            <a href="#" class="text-decoration-none small fw-semibold text-primary">Clear All</a>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-secondary">Sort By</label>
+                            <select class="form-select bg-light border-0 text-dark fw-semibold rounded-3">
+                                <option>Most Relevant</option>
+                                <option>Latest</option>
+                            </select>
+                        </div>
+
+                        <!-- Job Type Checkboxes -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-secondary mb-2">Job Type</label>
+                            <div class="form-check d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <input class="form-check-input shadow-none" type="checkbox" checked id="c-full">
+                                    <label class="form-check-label small fw-semibold text-dark" for="c-full">Full Time</label>
+                                </div>
+                                <span class="badge bg-light text-muted rounded-pill border">12,386</span>
+                            </div>
+                            <div class="form-check d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <input class="form-check-input shadow-none" type="checkbox" id="c-part">
+                                    <label class="form-check-label small fw-semibold text-dark" for="c-part">Part Time</label>
+                                </div>
+                                <span class="badge bg-light text-muted rounded-pill border">2,345</span>
+                            </div>
+                        </div>
+
+                        <!-- Salary Range Slider Bar Section -->
+                        <div class="mb-4">
+                            <label class="form-label fw-bold small text-secondary mb-1">Salary Range</label>
+                            <div class="text-primary fw-bold mb-2" id="live-sal-text" style="font-size: 0.95rem;">₹0 - ₹25,00,000+</div>
+                            <div class="position-relative my-3" style="height: 6px;">
+                                <div class="position-absolute start-0 top-0 w-100 h-100 bg-secondary bg-opacity-25 rounded"></div>
+                                <div class="position-absolute top-0 h-100 bg-primary rounded" style="left: 0%; right: 0%;"></div>
+                                <input type="range" class="form-range position-absolute top-0 start-0 w-100 m-0 slider-custom" 
+                                       min="0" max="5000000" value="2500000" step="100000" id="live-sal-bar"
+                                       style="height: 6px; -webkit-appearance: none; background: transparent; z-index: 2;">
+                            </div>
+                        </div>
+
+                        <!-- Location Checkbox -->
+                        <div>
+                            <label class="form-label fw-bold small text-secondary mb-2">Location</label>
+                            <div class="form-check d-flex justify-content-between align-items-center mb-2">
+                                <div>
+                                    <input class="form-check-input shadow-none" type="checkbox" id="l-hyd">
+                                    <label class="form-check-label small fw-semibold text-dark" for="l-hyd">Hyderabad</label>
+                                </div>
+                                <span class="text-muted small">3,456</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CENTER COLUMN: JOB CARDS -->
+                <div class="col-lg-6">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold text-dark mb-0" style="font-size: 1.1rem;">Jobs <span class="text-primary fw-semibold fs-6">(23,456)</span></h5>
+                    </div>
+
+                    <!-- Job Card 1 (Google) -->
+                    <div class="bg-white border rounded-4 p-4 mb-3 shadow-sm border-light-subtle position-relative card-hover-premium">
+                        <div class="d-flex gap-3 align-items-start flex-column flex-sm-row">
+                            <div class="bg-light rounded-3 p-2 border border-light-subtle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 55px; height: 55px;">
+                                <span class="fw-bold text-danger fs-3" style="font-family: 'Product Sans', sans-serif;">G</span>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex align-items-center gap-2 flex-wrap mb-1">
+                                    <h5 class="fw-bold text-dark mb-0" style="font-size: 1.15rem;">Senior Python Developer</h5>
+                                    <span class="badge bg-success bg-opacity-10 text-success px-2.5 py-1 rounded-pill small fw-semibold">98% Match</span>
+                                    <span class="badge bg-primary bg-opacity-10 text-primary px-2.5 py-1 rounded-pill small fw-semibold"><i class="bi bi-patch-check-fill me-1"></i>Verified</span>
+                                </div>
+                                <p class="text-secondary mb-3 small fw-semibold">Google ★ 4.5 • Hyderabad, India</p>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <span class="badge bg-light text-secondary border border-light-subtle px-2.5 py-1.5 rounded small fw-medium">Python</span>
+                                    <span class="badge bg-light text-secondary border border-light-subtle px-2.5 py-1.5 rounded small fw-medium">Django</span>
+                                </div>
+                            </div>
+                            <div class="text-sm-end w-100 w-sm-auto pt-3 pt-sm-0 border-top border-sm-0 mt-3 mt-sm-0 d-flex flex-row flex-sm-column justify-content-between align-items-center align-items-sm-end">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-1 fs-5">₹20 - ₹35 LPA</h6>
+                                    <small class="text-muted d-block mb-sm-3"><i class="bi bi-briefcase me-1"></i>5-8 Years</small>
+                                </div>
+                                <button class="btn btn-primary btn-sm px-4 fw-semibold py-2 rounded-3 shadow-sm">Apply Now</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job Card 2 (Microsoft) -->
+                    <div class="bg-white border rounded-4 p-4 mb-3 shadow-sm border-light-subtle position-relative card-hover-premium">
+                        <div class="d-flex gap-3 align-items-start flex-column flex-sm-row">
+                            <div class="bg-light rounded-3 p-2 border border-light-subtle d-flex align-items-center justify-content-center flex-shrink-0" style="width: 55px; height: 55px;">
+                                <div class="d-flex flex-wrap" style="width: 24px; height: 24px; gap: 2px;">
+                                    <div style="width: 11px; height: 11px; background-color: #f25022;"></div>
+                                    <div style="width: 11px; height: 11px; background-color: #7fba00;"></div>
+                                    <div style="width: 11px; height: 11px; background-color: #00a4ef;"></div>
+                                    <div style="width: 11px; height: 11px; background-color: #ffb900;"></div>
+                                </div>
+                            </div>
+                            <div class="flex-grow-1">
+                                <div class="d-flex align-items-center gap-2 flex-wrap mb-1">
+                                    <h5 class="fw-bold text-dark mb-0" style="font-size: 1.15rem;">Cloud Solutions Architect</h5>
+                                    <span class="badge bg-success bg-opacity-10 text-success px-2.5 py-1 rounded-pill small fw-semibold">95% Match</span>
+                                </div>
+                                <p class="text-secondary mb-3 small fw-semibold">Microsoft ★ 4.6 • Bangalore, India</p>
+                                <div class="d-flex gap-2 flex-wrap">
+                                    <span class="badge bg-light text-secondary border border-light-subtle px-2.5 py-1.5 rounded small fw-medium">AWS</span>
+                                    <span class="badge bg-light text-secondary border border-light-subtle px-2.5 py-1.5 rounded small fw-medium">Azure</span>
+                                </div>
+                            </div>
+                            <div class="text-sm-end w-100 w-sm-auto pt-3 pt-sm-0 border-top border-sm-0 mt-3 mt-sm-0 d-flex flex-row flex-sm-column justify-content-between align-items-center align-items-sm-end">
+                                <div>
+                                    <h6 class="fw-bold text-dark mb-1 fs-5">₹28 - ₹42 LPA</h6>
+                                    <small class="text-muted d-block mb-sm-3"><i class="bi bi-briefcase me-1"></i>6-10 Years</small>
+                                </div>
+                                <button class="btn btn-primary btn-sm px-4 fw-semibold py-2 rounded-3 shadow-sm">Apply Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN: SIDEBAR -->
+                <div class="col-lg-3">
+                    <div class="sticky-lg-top" style="top: 90px; z-index: 5;">
+                        <!-- AI Widget -->
+                        <div class="border rounded-4 p-4 mb-4 text-center shadow-sm" style="background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%); border-color: #d0e2ff !important;">
+                            <h6 class="fw-bold text-dark fs-5 mb-1">AI Job Assistant</h6>
+                            <p class="text-secondary small mb-4">Get personalized job recommendations based on your profile.</p>
+                            <button class="btn btn-white text-primary border border-primary-subtle bg-white w-100 fw-bold py-2 rounded-3 shadow-sm" type="button">Get Recommendations</button>
+                        </div>
+                        
+                        <!-- Top Hiring -->
+                        <div class="bg-white border rounded-4 p-4 shadow-sm border-light-subtle">
+                            <h6 class="fw-bold text-dark mb-3 fs-5">Top Companies Hiring</h6>
+                            <div class="d-flex align-items-center gap-3">
+                                <span class="fw-bold text-danger fs-4" style="font-family: sans-serif;">G</span>
+                                <div><small class="fw-bold d-block text-dark">Google</small><span class="text-success small fw-medium">1,248 open roles</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. Bootstrap JS & Range Slider Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const slider = document.getElementById('live-sal-bar');
+            const display = document.getElementById('live-sal-text');
+            if(slider && display) {
+                slider.addEventListener('input', (e) => {
+                    let textVal = parseInt(e.target.value).toLocaleString('en-IN');
+                    display.innerText = `₹0 - ₹${textVal}+`;
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+{% include 'layouts/footer.html' %}

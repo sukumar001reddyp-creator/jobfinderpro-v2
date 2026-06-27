@@ -1,0 +1,47 @@
+/* ================= Mobile Responsive ================= */
+
+@media (max-width: 992px) {
+    .hero-title {
+        font-size: 2.4rem !important;
+    }
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    
+    .jf-section {
+        padding: 50px 0;
+    }
+    
+    .card, .jf-card {
+        margin-bottom: 20px;
+    }
+    
+    /* Horizontal Scroll Categories */
+    .d-flex.overflow-auto {
+        padding-bottom: 15px;
+    }
+    
+    /* Jobs Page Cards */
+    .job-card {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn {
+        padding: 12px 20px;
+    }
+}
+
+/* Touch Friendly */
+button, .btn, a {
+    -webkit-tap-highlight-color: transparent;
+}

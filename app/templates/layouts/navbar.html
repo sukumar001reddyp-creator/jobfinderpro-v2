@@ -1,129 +1,51 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top border-bottom">
+<!-- ================= Navbar ================= -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm py-3 border-bottom">
     <div class="container">
 
         <!-- Logo -->
-        <a class="navbar-brand fw-bold fs-3 text-primary" href="/">
-            <i class="bi bi-briefcase-fill me-2"></i>
-            JobFinder<span class="text-dark">Pro</span>
+        <a class="navbar-brand d-flex align-items-center fw-bold fs-3 text-decoration-none" href="/">
+            <i class="bi bi-briefcase-fill text-primary me-2"></i>
+            JobFinder <span class="text-primary">Pro</span>
         </a>
 
         <!-- Mobile Toggle -->
-        <button class="navbar-toggler border-0 shadow-none"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarMenu">
+        <button class="navbar-toggler border-0 shadow-none" type="button" 
+                data-bs-toggle="collapse" data-bs-target="#navbarContent">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Menu -->
-        <div class="collapse navbar-collapse" id="navbarMenu">
-
-            <!-- Left Menu -->
-            <ul class="navbar-nav ms-4">
-
+        <div class="collapse navbar-collapse" id="navbarContent">
+            
+            <!-- Main Menu -->
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-1 gap-lg-4">
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="/">Home</a>
+                    <a class="nav-link fw-semibold {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="/jobs">
-                        Jobs
-                    </a>
-                </li>
-
+                    <li class="nav-item">
+    <a class="nav-link fw-bold px-2 {% if request.path == '/jobs' %}text-primary border-bottom border-primary border-2 active{% else %}text-secondary{% endif %}" href="/jobs">Jobs</a>
+</li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="/companies">
-                        Companies
-                    </a>
+                    <a class="nav-link fw-semibold" href="/companies">Companies</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="/remote-jobs">
-                        Remote Jobs
-                    </a>
+                    <a class="nav-link fw-semibold" href="/resume-builder">Resume Builder</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="/government-jobs">
-                        Government Jobs
-                    </a>
+                    <li class="nav-item">
+        <a class="nav-link fw-semibold" href="/ai-tools">AI Tools</a>
+    </li>
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold" href="#">Career Advice</a>
                 </li>
-
-                <li class="nav-item dropdown">
-
-                    <a class="nav-link dropdown-toggle fw-semibold"
-                       href="#"
-                       data-bs-toggle="dropdown">
-
-                        Resources
-
-                    </a>
-
-                    <ul class="dropdown-menu shadow border-0 rounded-4">
-
-                        <li>
-                            <a class="dropdown-item py-2" href="/resume-builder">
-                                Resume Builder
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item py-2" href="/ats-checker">
-                                ATS Resume Checker
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item py-2" href="/cover-letter">
-                                Cover Letter Generator
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item py-2" href="/career-advice">
-                                Career Advice
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </li>
-
+                
             </ul>
 
-            <!-- Search -->
-            <form class="d-flex mx-auto" style="max-width:420px; width:100%;">
-
-                <div class="input-group">
-
-                    <span class="input-group-text bg-light border-end-0">
-                        <i class="bi bi-search"></i>
-                    </span>
-
-                    <input
-                        class="form-control border-start-0"
-                        type="search"
-                        placeholder="Search jobs, companies..."
-                    >
-
-                </div>
-
-            </form>
-
-            <!-- Right -->
-            <div class="d-flex align-items-center gap-2">
-
-                <a href="/login" class="btn btn-outline-primary rounded-pill px-4">
-                    Login
-                </a>
-
-                <a href="/register" class="btn btn-primary rounded-pill px-4">
-                    Register
-                </a>
-
+            <!-- Right Side -->
+            <div class="d-flex align-items-center gap-3 ms-lg-auto">
+                <a href="/login" class="btn btn-outline-primary rounded-pill px-4 fw-semibold">Login</a>
+                <a href="/register" class="btn btn-primary rounded-pill px-4 fw-semibold">Register</a>
             </div>
-
         </div>
-
     </div>
 </nav>

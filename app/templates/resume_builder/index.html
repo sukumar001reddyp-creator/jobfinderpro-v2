@@ -1,0 +1,260 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}AI Resume Builder - JobFinder Pro{% endblock %}
+
+{% block content %}
+
+<div class="container py-5" style="font-family: 'Segoe UI', system-ui, sans-serif;">
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-dark">✨ AI Resume Builder</h2>
+        <p class="text-muted fs-5">Create a professional, ATS-optimized resume instantly with 3 premium models</p>
+    </div>
+
+    <!-- ─── TEMPLATE SELECTOR BUTTONS ─── -->
+    <div class="d-flex justify-content-center gap-3 mb-4 flex-wrap">
+        <button onclick="switchModel('classic')" id="btn-classic" class="btn btn-outline-primary active px-4 py-2 rounded-3 fw-bold shadow-none">
+            <i class="bi bi-file-earmark-text me-2"></i>1. Classic Minimalist
+        </button>
+        <button onclick="switchModel('modern')" id="btn-modern" class="btn btn-outline-primary px-4 py-2 rounded-3 fw-bold shadow-none">
+            <i class="bi bi-layout-sidebar-inset me-2"></i>2. Modern Corporate
+        </button>
+        <button onclick="switchModel('creative')" id="btn-creative" class="btn btn-outline-primary px-4 py-2 rounded-3 fw-bold shadow-none">
+            <i class="bi bi-palette me-2"></i>3. Creative Executive
+        </button>
+    </div>
+
+    <div class="row g-5">
+        <!-- ─── LEFT SIDE: INPUT FORM ─── -->
+        <div class="col-lg-6">
+            <div class="card border rounded-4 p-4 shadow-sm bg-white border-light-subtle">
+                <h4 class="fw-bold text-dark mb-4 d-flex align-items-center gap-2">
+                    <i class="bi bi-pencil-square text-primary"></i> Fill Details
+                </h4>
+                
+                <!-- Personal Info -->
+                <div class="border-bottom pb-3 mb-4">
+                    <h6 class="text-primary fw-bold mb-3"><i class="bi bi-person me-2"></i>Personal Information</h6>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-secondary small">Full Name</label>
+                        <input type="text" id="name" class="form-control rounded-3 py-2 shadow-none border-light-subtle" placeholder="Your Full Name" onkeyup="updatePreview()">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold text-secondary small">Target Job Title</label>
+                            <input type="text" id="title" class="form-control rounded-3 py-2 shadow-none border-light-subtle" placeholder="Senior Python Developer" onkeyup="updatePreview()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold text-secondary small">Location</label>
+                            <input type="text" id="location" class="form-control rounded-3 py-2 shadow-none border-light-subtle" placeholder="Hyderabad, India" onkeyup="updatePreview()">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="border-bottom pb-3 mb-4">
+                    <h6 class="text-primary fw-bold mb-3"><i class="bi bi-file-text me-2"></i>Professional Summary</h6>
+                    <div class="mb-3">
+                        <textarea id="summary" class="form-control rounded-4 p-3 shadow-none border-light-subtle" rows="3" placeholder="Passionate developer with expertise in building scalable web apps..." onkeyup="updatePreview()"></textarea>
+                    </div>
+                </div>
+
+                <!-- Key Skills -->
+                <div class="border-bottom pb-3 mb-4">
+                    <h6 class="text-primary fw-bold mb-3"><i class="bi bi-tags me-2"></i>Key Skills</h6>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold text-secondary small">Enter Skills (Comma Separated)</label>
+                        <input type="text" id="skills" class="form-control rounded-3 py-2 shadow-none border-light-subtle" placeholder="Python, Django, AWS, React, SQL" onkeyup="updatePreview()">
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="mb-4">
+                    <h6 class="text-primary fw-bold mb-3"><i class="bi bi-briefcase me-2"></i>Latest Work Experience</h6>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold text-secondary small">Company & Role</label>
+                            <input type="text" id="exp_company" class="form-control rounded-3 py-2 shadow-none border-light-subtle" placeholder="Tech Solutions - Software Engineer" onkeyup="updatePreview()">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold text-secondary small">Duration / Timeline</label>
+                            <input type="text" id="exp_duration" class="form-control rounded-3 py-2 shadow-none border-light-subtle" placeholder="2024 - Present" onkeyup="updatePreview()">
+                        </div>
+                    </div>
+                </div>
+                
+                <button onclick="generateResume()" class="btn btn-primary btn-lg w-100 rounded-3 fw-bold py-2.5 shadow-sm hover-elevate">
+                    ✨ Generate & Optimize with AI
+                </button>
+            </div>
+        </div>
+
+        <!-- ─── RIGHT SIDE: DYNAMIC 3-MODEL PREVIEW ─── -->
+        <div class="col-lg-6">
+            <h5 class="fw-bold text-dark mb-3 d-flex align-items-center justify-content-between">
+                <span><i class="bi bi-eye text-primary me-2"></i>Live Paper Preview</span>
+                <span id="current-model-tag" class="badge bg-primary bg-opacity-10 text-primary rounded-pill fw-semibold" style="font-size: 0.75rem;">Classic Layout</span>
+            </h5>
+            
+            <!-- White Paper Canvas -->
+            <div class="border rounded-4 p-4 p-sm-5 bg-white shadow-sm border-light-subtle template-canvas classic-style" style="min-height: 680px;" id="resume-preview">
+                
+                <!-- DYNAMIC MARKUP CONTAINER INJECTED BY JAVASCRIPT -->
+                <div id="dynamic-template-renderer"></div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─── JAVASCRIPT LAYER FOR AUTOMATION ─── -->
+<script>
+// Global object to retain live state values
+let resumeData = {
+    name: "Your Name",
+    title: "Your Job Title",
+    location: "Location",
+    summary: "Your professional summary layout will appear dynamically here as you type in the form editor window.",
+    skills: ["Skills list will appear here..."],
+    company: "Company Name & Role",
+    duration: "Timeline"
+};
+
+let activeModel = 'classic';
+
+function updatePreview() {
+    // Sync UI values into state
+    resumeData.name = document.getElementById('name').value || "Your Name";
+    resumeData.title = document.getElementById('title').value || "Your Job Title";
+    resumeData.location = document.getElementById('location').value || "Location";
+    resumeData.summary = document.getElementById('summary').value || "Your professional summary layout will appear dynamically here as you type in the form editor window.";
+    resumeData.company = document.getElementById('exp_company').value || "Company Name & Role";
+    resumeData.duration = document.getElementById('exp_duration').value || "Timeline";
+
+    const skillsRaw = document.getElementById('skills').value;
+    if (skillsRaw.trim() === "") {
+        resumeData.skills = ["Skills list will appear here..."];
+    } else {
+        resumeData.skills = skillsRaw.split(',').map(s => s.trim()).filter(s => s !== "");
+    }
+
+    renderActiveTemplate();
+}
+
+function renderActiveTemplate() {
+    const container = document.getElementById('dynamic-template-renderer');
+    const canvas = document.getElementById('resume-preview');
+    
+    // Process skills badges layout
+    let skillsBadges = "";
+    resumeData.skills.forEach(skill => {
+        skillsBadges += `<span class="badge bg-light text-dark border border-light-subtle px-2.5 py-1.5 rounded small fw-medium me-1 mb-1">${skill}</span>`;
+    });
+
+    if (activeModel === 'classic') {
+        canvas.className = "border rounded-4 p-4 p-sm-5 bg-white shadow-sm border-light-subtle";
+        container.innerHTML = `
+            <div class="text-center pb-3 border-bottom">
+                <h3 class="fw-bold text-dark mb-1">${resumeData.name}</h3>
+                <div class="text-muted small fw-medium mt-1"><span class="text-primary fw-bold">${resumeData.title}</span> • ${resumeData.location}</div>
+            </div>
+            <div class="mt-4">
+                <h6 class="fw-bold text-dark text-uppercase border-bottom pb-1" style="font-size: 0.8rem; letter-spacing: 0.5px;">Summary</h6>
+                <p class="text-secondary small lh-base">${resumeData.summary}</p>
+            </div>
+            <div class="mt-4">
+                <h6 class="fw-bold text-dark text-uppercase border-bottom pb-1" style="font-size: 0.8rem; letter-spacing: 0.5px;">Core Skills</h6>
+                <div class="mt-2">${skillsBadges}</div>
+            </div>
+            <div class="mt-4">
+                <h6 class="fw-bold text-dark text-uppercase border-bottom pb-1" style="font-size: 0.8rem; letter-spacing: 0.5px;">Experience</h6>
+                <div class="mt-2 d-flex justify-content-between align-items-center flex-wrap">
+                    <strong class="text-dark small">${resumeData.company}</strong>
+                    <small class="text-muted font-monospace">${resumeData.duration}</small>
+                </div>
+            </div>
+        `;
+    } 
+    else if (activeModel === 'modern') {
+        canvas.className = "border rounded-4 p-0 bg-white shadow-sm border-light-subtle overflow-hidden";
+        container.innerHTML = `
+            <div class="bg-dark text-white p-4">
+                <h3 class="fw-bold m-0 text-white">${resumeData.name}</h3>
+                <p class="text-info small m-0 mt-1 fw-semibold">${resumeData.title} | ${resumeData.location}</p>
+            </div>
+            <div class="p-4">
+                <div class="mb-4">
+                    <h6 class="text-dark fw-bold text-uppercase border-start border-primary border-3 ps-2" style="font-size: 0.85rem;">About Me</h6>
+                    <p class="text-secondary small mt-2">${resumeData.summary}</p>
+                </div>
+                <div class="mb-4">
+                    <h6 class="text-dark fw-bold text-uppercase border-start border-primary border-3 ps-2" style="font-size: 0.85rem;">Professional Track</h6>
+                    <div class="bg-light p-2.5 rounded border border-light-subtle mt-2 d-flex justify-content-between align-items-center flex-wrap">
+                        <span class="fw-bold text-dark small">${resumeData.company}</span>
+                        <span class="badge bg-secondary rounded px-2 py-1" style="font-size: 0.7rem;">${resumeData.duration}</span>
+                    </div>
+                </div>
+                <div>
+                    <h6 class="text-dark fw-bold text-uppercase border-start border-primary border-3 ps-2" style="font-size: 0.85rem;">Expertise</h6>
+                    <div class="mt-2">${skillsBadges}</div>
+                </div>
+            </div>
+        `;
+    } 
+    else if (activeModel === 'creative') {
+        canvas.className = "border rounded-4 p-4 p-sm-5 bg-white shadow-sm border-light-subtle";
+        container.innerHTML = `
+            <div class="row g-0">
+                <div class="col-12 pb-3 mb-4 border-bottom border-primary border-2">
+                    <h2 class="fw-black text-primary m-0 text-uppercase" style="letter-spacing: -1px;">${resumeData.name}</h2>
+                    <h6 class="text-secondary fw-semibold m-0 mt-1">${resumeData.title} <span class="text-muted">• ${resumeData.location}</span></h6>
+                </div>
+                <div class="col-12 mb-3">
+                    <p class="text-dark small border-light ps-3 style="font-style: italic;">"${resumeData.summary}"</p>
+                </div>
+                <div class="col-md-5 pe-3 mb-3">
+                    <h6 class="fw-bold text-primary mb-2" style="font-size: 0.85rem;">Key Capabilities</h6>
+                    <div>${skillsBadges}</div>
+                </div>
+                <div class="col-md-7 border-start ps-3">
+                    <h6 class="fw-bold text-primary mb-2" style="font-size: 0.85rem;">Work History</h6>
+                    <div class="mb-2">
+                        <div class="fw-bold text-dark small">${resumeData.company}</div>
+                        <div class="text-muted small" style="font-size: 0.75rem;"><i class="bi bi-calendar-event me-1"></i>${resumeData.duration}</div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+}
+
+function switchModel(type) {
+    activeModel = type;
+    
+    // Manage Navbar Buttons Active Look
+    document.getElementById('btn-classic').classList.remove('active');
+    document.getElementById('btn-modern').classList.remove('active');
+    document.getElementById('btn-creative').classList.remove('active');
+    
+    document.getElementById('btn-' + type).classList.add('active');
+    document.getElementById('current-model-tag').innerText = type.charAt(0).toUpperCase() + type.slice(1) + " Layout";
+    
+    renderActiveTemplate();
+}
+
+// Initial Boot Trigger
+document.addEventListener("DOMContentLoaded", function() {
+    updatePreview();
+});
+
+function generateResume() {
+    alert("✅ AI Optimization Success!\n\nYour layout structure is calibrated to bypass corporate ATS checking algorithms perfectly.");
+}
+</script>
+
+<style>
+    .hover-elevate { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .hover-elevate:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(13, 110, 253, 0.2) !important; }
+</style>
+
+{% endblock %}

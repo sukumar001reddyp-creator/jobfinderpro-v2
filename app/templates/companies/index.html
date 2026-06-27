@@ -1,0 +1,64 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Companies - JobFinder Pro{% endblock %}
+
+{% block content %}
+
+<div class="container py-4" style="font-family: 'Segoe UI', system-ui, sans-serif;">
+    <div class="text-center mb-4">
+        <h3 class="fw-bold text-dark mb-1">Top Companies Hiring</h3>
+        <p class="text-muted small">Discover opportunities from the best companies worldwide</p>
+    </div>
+
+    <div class="row g-3">
+        {% set companies = [
+            ('Google', '1,248', 'Hyd, Blr', 'https://cdnjs.cloudflare.com/ajax/libs/devicon/2.14.0/google/google-original.svg'),
+            ('Microsoft', '987', 'Blr, Hyd', 'https://cdnjs.cloudflare.com/ajax/libs/devicon/2.14.0/microsoft/microsoft-original.svg'),
+            ('Amazon', '856', 'Hyd, Chn', 'https://cdnjs.cloudflare.com/ajax/libs/devicon/2.14.0/amazon/amazon-original.svg'),
+            ('TCS', '2,345', 'All Cities', 'https://api.iconify.design/simple-icons:tata.svg?color=%231b365d'),
+            ('Infosys', '1,672', 'Blr, Pune', 'https://api.iconify.design/simple-icons:infosys.svg?color=%23007cc3'),
+            ('Accenture', '1,234', 'Hyd, Mum', 'https://api.iconify.design/simple-icons:accenture.svg?color=%23a100ff'),
+            ('Wipro', '945', 'Blr, Kochi', 'https://api.iconify.design/simple-icons:wipro.svg?color=%23000000'),
+            ('Meta', '432', 'Hyd, Remote', 'https://cdnjs.cloudflare.com/ajax/libs/devicon/2.14.0/facebook/facebook-original.svg'),
+            ('Apple', '310', 'Blr, Hyd', 'https://api.iconify.design/simple-icons:apple.svg?color=%23555555'),
+            ('Netflix', '156', 'Mum, Remote', 'https://api.iconify.design/simple-icons:netflix.svg?color=%23e50914'),
+            ('Deloitte', '1,105', 'Hyd, Ggm', 'https://api.iconify.design/simple-icons:deloitte.svg?color=%2386bc25'),
+            ('Capgemini', '1,420', 'Hyd, Pune', 'https://api.iconify.design/simple-icons:capgemini.svg?color=%230070ad')
+        ] %}
+
+        {% for name, openings, locations, logo_url in companies %}
+        <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+            <div class="card h-100 border rounded-3 shadow-sm bg-white border-light-subtle text-center p-3 hover-lift-compact">
+                
+                <div class="mx-auto mb-2 bg-white border rounded-3 d-flex align-items-center justify-content-center p-2" style="width: 65px; height: 65px;">
+                    <img src="{{ logo_url }}" alt="{{ name }} Logo" class="img-fluid object-fit-contain" style="max-height: 100%; max-width: 100%;">
+                </div>
+                
+                <h6 class="fw-bold text-dark mb-1 text-truncate" style="font-size: 1rem;">{{ name }}</h6>
+                <p class="text-muted mb-2 text-truncate" style="font-size: 0.75rem;"><i class="bi bi-geo-alt me-1"></i>{{ locations }}</p>
+                
+                <div class="d-inline-block mx-auto px-2.5 py-1 bg-success bg-opacity-10 text-success rounded-pill fw-bold mb-3" style="font-size: 0.75rem;">
+                    {{ openings }} Openings
+                </div>
+                
+                <a href="/jobs?company={{ name }}" class="btn btn-outline-primary btn-sm w-100 mt-auto py-1.5 rounded-2 fw-semibold">
+                    View Jobs
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .hover-lift-compact {
+        transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .hover-lift-compact:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05) !important;
+        border-color: #b6d4fe !important;
+    }
+</style>
+
+{% endblock %}

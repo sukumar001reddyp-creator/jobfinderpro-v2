@@ -100,3 +100,28 @@
     color:var(--muted);
 
 }
+.hero-dashboard{
+
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+
+}
+
+.job-widget{
+
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    border:1px solid var(--border);
+    box-shadow:var(--shadow-md);
+    transition:.35s;
+
+}
+
+.job-widget:hover{
+
+    transform:translateY(-8px);
+    box-shadow:var(--shadow-lg);
+
+}

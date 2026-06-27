@@ -1,88 +1,128 @@
-<!-- ================= Hero Section ================= -->
+<!-- Hero Section -->
+<section class="position-relative overflow-hidden d-flex align-items-center py-5" style="min-height: 85vh; background-color: #f6f9ff;">
+   
+    <!-- Background Image -->
+    <img src="{{ url_for('static', filename='images/hero.png') }}" 
+         alt="Background" 
+         class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover" 
+         style="z-index: 1; object-position: right center;">
 
-<section class="hero-section">
+    <!-- Gradient Overlay -->
+    <div class="position-absolute top-0 start-0 w-100 h-100" 
+         style="background: linear-gradient(90deg, rgba(238,243,255,0.95) 0%, rgba(227,237,255,0.85) 40%, rgba(255,255,255,0) 100%); z-index: 2;">
+    </div>
 
-    <div class="container">
-
-        <div class="row align-items-center min-vh-100">
-
-            <!-- Left -->
-
+    <!-- Main Content -->
+    <div class="container py-4 position-relative" style="z-index: 3;">
+        <div class="row align-items-center g-5">
+           
+            <!-- LEFT COLUMN -->
             <div class="col-lg-6">
-
-                <span class="hero-badge">
-
-                    🚀 AI Powered Job Search Platform
-
-                </span>
-
-                <h1 class="hero-title mt-4">
-
-                    Find Your
-                    <span>Dream Job</span>
-
-                    Anywhere in the World.
-
+                <div class="d-inline-flex align-items-center bg-white shadow-sm px-3 py-2 rounded-pill mb-4 border">
+                    <i class="bi bi-patch-check-fill text-primary me-2 fs-5"></i>
+                    <small class="fw-semibold text-dark">Trusted by <span class="text-primary fw-bold">50K+</span> Job Seekers</small>
+                </div>
+                
+                <h1 class="display-4 fw-bold text-dark mb-3" style="line-height: 1.2;">
+                    Find Your <span class="text-primary">Dream Job</span> <br>Faster Than Ever
                 </h1>
-
-                <p class="hero-subtitle">
-
-                    Search millions of jobs from top companies,
-                    startups and government organizations
-                    with one powerful search.
-
+                
+                <p class="fs-5 text-secondary mb-4 opacity-75">
+                    Explore thousands of job opportunities from top companies. Your next career move is just a search away.
                 </p>
-
-                <!-- Search -->
-
-                <div class="hero-search shadow-lg">
-
-                    <div class="row g-2">
-
-                        <div class="col-md-5">
-
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Job title or keyword">
-
+                
+                <!-- Search Box -->
+                <div class="bg-white p-2 rounded-4 shadow border mb-4">
+                    <div class="row g-2 align-items-center">
+                        <div class="col-md-5 position-relative">
+                            <i class="bi bi-search text-muted position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                            <input type="text" class="form-control border-0 ps-5 bg-transparent shadow-none" placeholder="Job title, keyword...">
                         </div>
-
-                        <div class="col-md-4">
-
-                            <input
-                                type="text"
-                                class="form-control"
-                                placeholder="Location">
-
+                        <div class="col-md-4 position-relative border-start border-2 d-none d-md-block">
+                            <i class="bi bi-geo-alt text-muted position-absolute top-50 start-0 translate-middle-y ms-3"></i>
+                            <input type="text" class="form-control border-0 ps-5 bg-transparent shadow-none" placeholder="Location">
                         </div>
-
                         <div class="col-md-3">
-
-                            <button class="btn btn-primary w-100">
-
-                                Search
-
+                            <button class="btn btn-primary w-100 py-2.5 fw-semibold rounded-3">
+                                Search Jobs
                             </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popular -->
+                <div class="d-flex align-items-center gap-2 flex-wrap mb-5">
+                    <small class="text-dark fw-bold me-1">Popular:</small>
+                    <a href="#" class="badge bg-white text-primary border text-decoration-none px-3 py-2 rounded-pill shadow-sm small">Software Developer</a>
+                    <a href="#" class="badge bg-white text-primary border text-decoration-none px-3 py-2 rounded-pill shadow-sm small">Data Analyst</a>
+                </div>
+
+                <!-- Stats -->
+                <div class="row g-3">
+                    <div class="col-4">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="bg-white rounded-3 p-2 border shadow-sm"><i class="bi bi-briefcase text-primary fs-5"></i></div>
+                            <div><h5 class="fw-bold mb-0">10K+</h5><small class="text-muted">Jobs</small></div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="bg-white rounded-3 p-2 border shadow-sm"><i class="bi bi-building text-primary fs-5"></i></div>
+                            <div><h5 class="fw-bold mb-0">2K+</h5><small class="text-muted">Companies</small></div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="bg-white rounded-3 p-2 border shadow-sm"><i class="bi bi-people text-primary fs-5"></i></div>
+                            <div><h5 class="fw-bold mb-0">50K+</h5><small class="text-muted">Users</small></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT COLUMN - Floating Cards (Kindaki jarigina) -->
+            <div class="col-lg-6">
+                <div class="row justify-content-lg-end">
+                    <div class="col-md-10 col-lg-9">
+                        <div class="d-flex flex-column gap-3" style="margin-top: 140px;">
+                            
+                            <div class="bg-white p-3 rounded-4 shadow border">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <div class="bg-primary bg-opacity-10 rounded-3 p-2 text-primary"><i class="bi bi-code-slash fs-4"></i></div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0 fw-bold text-dark small">Software Developer</h6>
+                                        <small class="text-muted d-block" style="font-size: 11px;">Tech Solutions • ₹6-12 LPA</small>
+                                    </div>
+                                    <span class="badge bg-success bg-opacity-10 text-success rounded-pill" style="font-size: 10px;">Full Time</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-3 rounded-4 shadow border">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <div class="bg-warning bg-opacity-10 rounded-3 p-2 text-warning"><i class="bi bi-palette fs-4"></i></div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0 fw-bold text-dark small">UI/UX Designer</h6>
+                                        <small class="text-muted d-block" style="font-size: 11px;">Creative Minds • ₹4-8 LPA</small>
+                                    </div>
+                                    <span class="badge bg-success bg-opacity-10 text-success rounded-pill" style="font-size: 10px;">Full Time</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-white p-3 rounded-4 shadow border">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <div class="bg-info bg-opacity-10 rounded-3 p-2 text-info"><i class="bi bi-graph-up-arrow fs-4"></i></div>
+                                    <div class="flex-grow-1">
+                                        <h6 class="mb-0 fw-bold text-dark small">Data Analyst</h6>
+                                        <small class="text-muted d-block" style="font-size: 11px;">Data Insights • ₹5-9 LPA</small>
+                                    </div>
+                                    <span class="badge bg-success bg-opacity-10 text-success rounded-pill" style="font-size: 10px;">Full Time</span>
+                                </div>
+                            </div>
 
                         </div>
-
                     </div>
-
                 </div>
-
-                <div class="hero-tags mt-4">
-
-                    <span>Python</span>
-
-                    <span>Java</span>
-
-                    <span>Remote</span>
-
-                    <span>Developer</span>
-
-                    <span>Government</span>
-
-                </div>
-
             </div>
+        </div>
+    </div>
+</section>
