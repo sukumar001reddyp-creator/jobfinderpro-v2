@@ -22,29 +22,29 @@
                     <a class="nav-link fw-semibold {% if request.path == '/' %}active{% endif %}" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <li class="nav-item">
-    <a class="nav-link fw-bold px-2 {% if request.path == '/jobs' %}text-primary border-bottom border-primary border-2 active{% else %}text-secondary{% endif %}" href="/jobs">Jobs</a>
-</li>
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="/companies">Companies</a>
+                    <a class="nav-link fw-semibold {% if request.path == '/jobs' %}active{% endif %}" href="/jobs">Jobs</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="/resume-builder">Resume Builder</a>
+                    <a class="nav-link fw-semibold {% if request.path == '/companies' %}active{% endif %}" href="/companies">Companies</a>
                 </li>
                 <li class="nav-item">
-                    <li class="nav-item">
-        <a class="nav-link fw-semibold" href="/ai-tools">AI Tools</a>
-    </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-semibold" href="#">Career Advice</a>
+                    <a class="nav-link fw-semibold {% if request.path == '/resume-builder' %}active{% endif %}" href="/resume-builder">Resume Builder</a>
                 </li>
-                
+                <li class="nav-item">
+                    <a class="nav-link fw-semibold {% if request.path == '/ai-tools' %}active{% endif %}" href="/ai-tools">AI Tools</a>
+                </li>
             </ul>
 
             <!-- Right Side -->
             <div class="d-flex align-items-center gap-3 ms-lg-auto">
-                <a href="/login" class="btn btn-outline-primary rounded-pill px-4 fw-semibold">Login</a>
-                <a href="/register" class="btn btn-primary rounded-pill px-4 fw-semibold">Register</a>
+                {% if current_user.is_authenticated %}
+                    <span class="text-dark fw-semibold">Hi, {{ current_user.username }}</span>
+                    <a href="/dashboard" class="btn btn-outline-primary rounded-pill px-4 fw-semibold">Dashboard</a>
+                    <a href="/logout" class="btn btn-danger rounded-pill px-4 fw-semibold">Logout</a>
+                {% else %}
+                    <a href="/login" class="btn btn-outline-primary rounded-pill px-4 fw-semibold">Login</a>
+                    <a href="/register" class="btn btn-primary rounded-pill px-4 fw-semibold">Register</a>
+                {% endif %}
             </div>
         </div>
     </div>

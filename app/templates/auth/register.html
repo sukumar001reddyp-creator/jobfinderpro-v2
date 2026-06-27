@@ -1,0 +1,93 @@
+{% extends "layouts/base.html" %}
+
+{% block title %}Register - JobFinder Pro{% endblock %}
+
+{% block content %}
+<!-- Full Screen Premium Background Wrapper -->
+<div class="d-flex align-items-center justify-content-center" style="background: linear-gradient(135deg, #eef3ff 0%, #e3edff 100%); min-height: 88vh; font-family: 'Segoe UI', system-ui, sans-serif;">
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-xl-4 col-lg-5 col-md-7 col-sm-9">
+                
+                <!-- ================= FLASK FLASH ERRORS DISPLAY ================= -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show rounded-3 shadow-sm border-0 mb-3" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i> {{ message }}
+                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <!-- Premium Clean White Card -->
+                <div class="card shadow border border-light-subtle rounded-4 bg-white">
+                    <div class="card-body p-4 p-sm-5">
+                        
+                        <!-- Header Greetings -->
+                        <div class="text-center mb-4">
+                            <h3 class="fw-bold text-dark mb-1">Create Your Account 🚀</h3>
+                            <p class="text-secondary small">Join us and find your dream career move</p>
+                        </div>
+                        
+                        <!-- Core Registration Form -->
+                        <form method="POST" action="/register">
+                            
+                            <!-- Username Input with Icon -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-secondary small">Username</label>
+                                <div class="position-relative">
+                                    <i class="bi bi-person text-muted position-absolute top-50 start-0 translate-middle-y ms-3 fs-6"></i>
+                                    <input type="text" name="username" class="form-control rounded-3 ps-5 py-2.5 shadow-none border-light-subtle text-dark fw-medium" placeholder="johndoe123" required>
+                                </div>
+                            </div>
+
+                            <!-- Email Input with Icon -->
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold text-secondary small">Email Address</label>
+                                <div class="position-relative">
+                                    <i class="bi bi-envelope text-muted position-absolute top-50 start-0 translate-middle-y ms-3 fs-6"></i>
+                                    <input type="email" name="email" class="form-control rounded-3 ps-5 py-2.5 shadow-none border-light-subtle text-dark fw-medium" placeholder="name@company.com" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Password Input with Icon -->
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold text-secondary small">Password</label>
+                                <div class="position-relative">
+                                    <i class="bi bi-lock text-muted position-absolute top-50 start-0 translate-middle-y ms-3 fs-6"></i>
+                                    <input type="password" name="password" class="form-control rounded-3 ps-5 py-2.5 shadow-none border-light-subtle text-dark fw-medium" placeholder="Create strong password" required>
+                                </div>
+                            </div>
+                            
+                            <!-- Submit Button Trigger -->
+                            <button type="submit" class="btn btn-primary w-100 py-2.5 fw-bold rounded-3 shadow-sm hover-elevate-btn">
+                                Register Now
+                            </button>
+                        </form>
+                        
+                        <!-- Bottom Redirect Link Container -->
+                        <div class="text-center mt-4 pt-2 border-top border-light-subtle">
+                            <p class="text-secondary small mb-0">Already have an account? <a href="/login" class="text-primary text-decoration-none fw-bold">Login</a></p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hover Physics CSS -->
+<style>
+    .hover-elevate-btn {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .hover-elevate-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2) !important;
+    }
+</style>
+{% endblock %}
